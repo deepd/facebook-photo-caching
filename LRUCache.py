@@ -1,7 +1,7 @@
 import collections
 
 class LRUCache:
-    def __init__(self, capacity):
+    def __init__(self, capacity=50000):
         self.capacity = capacity
         self.cache = collections.OrderedDict()
 
@@ -13,10 +13,10 @@ class LRUCache:
         except KeyError:
             return -1
 
-    def set(self, key, value):
+    def set(self, key):
         try:
             self.cache.pop(key)
         except KeyError:
             if len(self.cache) >= self.capacity:
                 self.cache.popitem(last=False)
-        self.cache[key] = value
+        self.cache[key] = key
