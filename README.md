@@ -1,7 +1,5 @@
 #facebook-photo-caching
-Duplicate facebook photo caching system
-
-This is a project for Operating Systems Course
+Implement facebook photo caching system based on the paper : [An Analysis of Facebook Photo Caching](FBPaper.pdf)
 
 Contributors : 
 Deep Desai
