@@ -19,21 +19,21 @@ class S4LRUCache:
             return value
         except KeyError:
             try:
-	            value = self.cache2.pop(key)
-	            setCache3(key)
-	            return value
-	        except KeyError:
-	            try:
-		            value = self.cache3.pop(key)
-		            setCache4(key)
-		            return value
-		        except KeyError:
-		        	try:
-			            value = self.cache4.pop(key)
-			            setCache4(key)
-			            return value
-		            except KeyError:
-		            	return -1
+                value = self.cache2.pop(key)
+                setCache3(key)
+                return value
+            except KeyError:
+                try:
+                    value = self.cache3.pop(key)
+                    setCache4(key)
+                    return value
+                except KeyError:
+                    try:
+                        value = self.cache4.pop(key)
+                        setCache4(key)
+                        return value
+                    except KeyError:
+                        return -1
 
 
     def setCache1(self, key):
@@ -55,7 +55,7 @@ class S4LRUCache:
 
     def setCache4(self, key):
         if len(self.cache4) >= self.capacity4:
-          	[k,v] = self.cache4.popitem(last=False)
+            [k,v] = self.cache4.popitem(last=False)
             setCache3(k)
         self.cache4[key] = key    
 
