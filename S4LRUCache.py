@@ -41,13 +41,13 @@ class S4LRUCache:
             self.cache1.popitem(last=False)
         self.cache1[key] = key
 
-	def setCache2(self, key):
+    def setCache2(self, key):
         if len(self.cache2) >= self.capacity2:
             [k,v] = self.cache2.popitem(last=False)
             setCache1(k)
         self.cache2[key] = key
 
-	def setCache3(self, key):
+    def setCache3(self, key):
         if len(self.cache3) >= self.capacity3:
             [k,v] = self.cache3.popitem(last=False)
             setCache2(k)
