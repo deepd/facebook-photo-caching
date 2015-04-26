@@ -8,3 +8,4 @@ def generateQueries():
 		for i in s:
 			if i <= 1000000:
 				queries.append(i)
+	return queries
