@@ -11,3 +11,9 @@ class BrowserCache:
 
     def get(self, key):
     	return self.cache.get(key)
+
+    def getMisses(self):
+    	return self.misses
+
+    def getHits(self):
+    	return self.hits

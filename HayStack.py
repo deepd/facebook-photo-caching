@@ -1,5 +1,10 @@
 class HayStack:
 	def __init__(self):
-		self.haystack = []
-		for i in range(0, 1000001):
-			haystack.append(i)
+		self.requests = 0
+
+	def get(self, key):
+		self.requests += 1
+		return key
+
+	def getRequestsNumber(self):
+		return self.requests
