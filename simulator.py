@@ -1,34 +1,59 @@
 import genzipf
-import EdgeCache
-import OriginCache
-import HayStack
+from EdgeCache import EdgeCache
+from OriginCache import OriginCache
+from HayStack import HayStack
+import random
 
+def getOrigin(req):
+	return req%4
 
 def fetch(req, edge, origin, hay):
-	
+	backPopulate = []
+	r = random.randint(0, 8) 
+	value1 = edge[r].get(req)
+	if value1 == -1:
+		backPopulate.append(edge[r])
+		o = getOrigin(req)
+		value2 = origin[o].get(req)
+		if value2 == -1:
+			backPopulate.append(origin[o])
+			value3 = hay.get(req)
+	for obj in backPopulate:
+		obj.set(req)
+
+
 
 def printResults(reqs, edge, origin, hay):
 	hits = 0
 	misses = 0
+	count = 0
 	for e in edge:
 		hits += e.getHits()
 		misses += e.getMisses()
-	print "Edge Hit-ratio : ", (hits/reqs)*100
+	print "Edge percent traffic : ", (hits*100.0)/reqs
+	print "Edge Hit-ratio : ", (hits*100.0)/(hits+misses)
+	print "*********"
+
 	hits = 0
 	misses = 0
 	for e in origin:
 		hits += e.getHits()
 		misses += e.getMisses()
-	print "Origin Hit-ratio : ", (hits/reqs)*100
+	print "Origin percent traffic : ", (hits*100.0)/reqs
+	print "Origin Hit-ratio : ", (hits*100.0)/(hits+misses)
+	print "*********"
+	
 	hits = 0
 	misses = 0
-	for e in hay:
-		hits += e.getRequestsNumber()
-	print "HayStack Hit-ratio : ", (hits/reqs)*100
+	hits += hay.getRequestsNumber()
+	print "HayStack percent traffic : ", (hits*100.0)/reqs
+	print "HayStack Hit-ratio : ", (hits*100.0)/(hits+misses)
+	print "*********"
+	print reqs
 
 if __name__ == "__main__":
-	edge = [EdgeCache() for i in range(0,9)]
-	origin = [OriginCache() for i in range(0,4)]
+	edge = [EdgeCache(2000) for i in range(0,9)]
+	origin = [OriginCache(5000) for i in range(0,4)]
 	hay = HayStack()
 	requests = genzipf.generateQueries()
 	for req in requests:

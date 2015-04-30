@@ -1,8 +1,9 @@
 from FIFOCache import FIFOCache
+from LRUCache import LRUCache
 
 class EdgeCache:
-	def __init__(self):
-        self.cache = FIFOCache()
+    def __init__(self, capacity):
+        self.cache = FIFOCache(capacity)
         self.misses = 0
         self.hits = 0
 
@@ -10,7 +11,12 @@ class EdgeCache:
     	self.cache.set(key)
 
     def get(self, key):
-    	return self.cache.get(key)
+    	v = self.cache.get(key)
+        if v == -1:
+            self.misses+=1
+        else:
+            self.hits+=1
+        return v
 
     def getMisses(self):
     	return self.misses
