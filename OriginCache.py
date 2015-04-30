@@ -1,8 +1,6 @@
-from FIFOCache import FIFOCache
-
 class OriginCache:
-	def __init__(self):
-        self.cache = FIFOCache()
+	def __init__(self, cache_type):
+        self.cache = cache_type
         self.misses = 0
         self.hits = 0
 
