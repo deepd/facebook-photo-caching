@@ -1,8 +1,6 @@
-from LRUCache import LRUCache
-
 class BrowserCache:
-	def __init__(self):
-        self.cache = LRUCache(5000)
+	def __init__(self, cache_type):
+        self.cache = cache_type
         self.misses = 0
         self.hits = 0
 

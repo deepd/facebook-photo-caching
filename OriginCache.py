@@ -1,9 +1,11 @@
+<<<<<<< HEAD
 from FIFOCache import FIFOCache
 from LRUCache import LRUCache
 
+
 class OriginCache:
-    def __init__(self, capacity):
-        self.cache = FIFOCache(capacity)
+	def __init__(self, cache_type):
+        self.cache = cache_type
         self.misses = 0
         self.hits = 0
 

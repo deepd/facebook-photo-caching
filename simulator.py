@@ -2,6 +2,10 @@ import genzipf
 from EdgeCache import EdgeCache
 from OriginCache import OriginCache
 from HayStack import HayStack
+from FIFOCache import FIFOCache
+from LRUCache import LRUCache
+from LFUCache import LFUCache
+from S4LRUCache import S4LRUCache
 import random
 
 def getOrigin(req):
@@ -20,8 +24,6 @@ def fetch(req, edge, origin, hay):
 			value3 = hay.get(req)
 	for obj in backPopulate:
 		obj.set(req)
-
-
 
 def printResults(reqs, edge, origin, hay):
 	hits = 0
@@ -49,11 +51,11 @@ def printResults(reqs, edge, origin, hay):
 	print "HayStack percent traffic : ", (hits*100.0)/reqs
 	print "HayStack Hit-ratio : ", (hits*100.0)/(hits+misses)
 	print "*********"
-	print reqs
+
 
 if __name__ == "__main__":
-	edge = [EdgeCache(2000) for i in range(0,9)]
-	origin = [OriginCache(5000) for i in range(0,4)]
+	edge = [EdgeCache(FIFOCache(2000)) for i in range(0,9)]
+	origin = [OriginCache(FIFOCache(5000)) for i in range(0,4)]
 	hay = HayStack()
 	requests = genzipf.generateQueries()
 	for req in requests:
