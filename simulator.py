@@ -54,7 +54,7 @@ def printResults(reqs, edge, origin, hay):
 
 
 if __name__ == "__main__":
-	edge = [EdgeCache(FIFOCache(2000)) for i in range(0,9)]
+	edge = [EdgeCache(S4LRUCache(6000)) for i in range(0,9)]
 	origin = [OriginCache(FIFOCache(5000)) for i in range(0,4)]
 	hay = HayStack()
 	requests = genzipf.generateQueries()

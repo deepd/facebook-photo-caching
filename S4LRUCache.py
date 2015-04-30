@@ -15,28 +15,28 @@ class S4LRUCache:
     def get(self, key):
         try:
             value = self.cache1.pop(key)
-            setCache2(key)
+            self.setCache2(key)
             return value
         except KeyError:
             try:
                 value = self.cache2.pop(key)
-                setCache3(key)
+                self.setCache3(key)
                 return value
             except KeyError:
                 try:
                     value = self.cache3.pop(key)
-                    setCache4(key)
+                    self.setCache4(key)
                     return value
                 except KeyError:
                     try:
                         value = self.cache4.pop(key)
-                        setCache4(key)
+                        self.setCache4(key)
                         return value
                     except KeyError:
                         return -1
 
 
-    def setCache1(self, key):
+    def set(self, key):
         if len(self.cache1) >= self.capacity1:
             self.cache1.popitem(last=False)
         self.cache1[key] = key
@@ -44,18 +44,18 @@ class S4LRUCache:
     def setCache2(self, key):
         if len(self.cache2) >= self.capacity2:
             [k,v] = self.cache2.popitem(last=False)
-            setCache1(k)
+            self.set(k)
         self.cache2[key] = key
 
     def setCache3(self, key):
         if len(self.cache3) >= self.capacity3:
             [k,v] = self.cache3.popitem(last=False)
-            setCache2(k)
+            self.setCache2(k)
         self.cache3[key] = key
 
     def setCache4(self, key):
         if len(self.cache4) >= self.capacity4:
             [k,v] = self.cache4.popitem(last=False)
-            setCache3(k)
+            self.setCache3(k)
         self.cache4[key] = key    
 
