@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from FIFOCache import FIFOCache
 from LRUCache import LRUCache
 
