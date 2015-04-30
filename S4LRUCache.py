@@ -2,10 +2,10 @@ import collections
 
 class S4LRUCache:
     def __init__(self, capacity=50000):
-        self.capacity1 = (int)capacity/4
-        self.capacity2 = (int)capacity/4
-        self.capacity3 = (int)capacity/4
-        self.capacity4 = (int)capacity/4
+        self.capacity1 = (int)(capacity/4)
+        self.capacity2 = (int)(capacity/4)
+        self.capacity3 = (int)(capacity/4)
+        self.capacity4 = (int)(capacity/4)
         self.cache1 = collections.OrderedDict()
         self.cache2 = collections.OrderedDict()
         self.cache3 = collections.OrderedDict()

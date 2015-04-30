@@ -3,7 +3,7 @@ from LRUCache import LRUCache
 
 
 class OriginCache:
-	def __init__(self, cache_type):
+    def __init__(self, cache_type):
         self.cache = cache_type
         self.misses = 0
         self.hits = 0
