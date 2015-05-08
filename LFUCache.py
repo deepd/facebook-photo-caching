@@ -15,8 +15,8 @@ class LFUCache:
     def set(self, key):
         if len(self.lfu) >= self.capacity:
             # find the LFU entry
-            #old_key = min(self.lfu.keys(), key=lambda k:self.lfu[k])
-            self.lfu.pop(self.min)
+            old_key = min(self.lfu.keys(), key=lambda k:self.lfu[k])
+            self.lfu.pop(old_key)
         self.lfu[key] = 1
-        self.min = key
+        #self.min = key
 
