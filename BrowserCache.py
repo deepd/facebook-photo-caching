@@ -15,3 +15,4 @@ class BrowserCache:
 
     def getHits(self):
     	return self.hits
+    	
